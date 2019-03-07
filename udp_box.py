@@ -1,5 +1,5 @@
 """
-UDP_bbox is a black box network simulator for UDP.
+UDP_box is a black box network simulator for UDP.
 
 It simulates network throttling, packet loss, and reordering over UDP.
 
@@ -96,6 +96,9 @@ if __name__ == "__main__":
     logging.getLogger("algs.udp_wrapper").setLevel(logging.WARN)
     args = parse_args()
     assert(args.loss_rate < 1.0 and args.loss_rate >= 0)
+    assert(args.ooo_rate < 1.0 and args.ooo_rate >= 0)
+    assert(args.dupe_rate < 1.0 and args.dupe_rate >= 0)
+    assert(args.ber < 1.0 and args.ber >= 0)
     log = logging.getLogger()
 
     log.info(args)
@@ -152,6 +155,7 @@ if __name__ == "__main__":
             s, d, a = output_buffer.pop(i)
 
             input_sock.sendto(corrupt(d, ber=args.ber), client_addr)
+            #input_sock.sendto(corrupt(d, ber=args.ber), a) # fix amm042
             input_next_send = n + timedelta(seconds=len(d)*sec_per_byte)
 
             # re-add to cause dupes.

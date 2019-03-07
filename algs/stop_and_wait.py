@@ -36,7 +36,7 @@ class StopAndWait:
         while True:
             data,remote_addr = sock.recvfrom(mtu)
 
-            if datetime.now() - last > self.timeout:
+            if in_xfr and datetime.now() - last > self.timeout:
                 log.info("Abort transfer due to timeout.".format())
                 in_xfr = False
                 if outfile:
