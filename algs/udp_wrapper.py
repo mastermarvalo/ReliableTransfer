@@ -3,7 +3,7 @@ import logging
 #from binascii import hexlify
 log = logging.getLogger(__name__)
 class UdpWrapper:
-    "A simple wrapper to a UDP socket that adds logging."
+    "A wrapper to a UDP socket that adds logging."
     def __init__(self, dest):
         self.name = 'UDPWrap{}'.format(dest)
         self.dest = dest

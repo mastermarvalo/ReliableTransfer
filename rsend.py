@@ -1,7 +1,7 @@
 """
 Reliable Sender
 The goal is to create a reliable transport protocol. This file is the side
-that initiates a transfer (client). The rserver.py file has the server codeself.
+that initiates a transfer (client). The rrecv.py file has the server codeself.
 Data is transmitted over UDP. A separate udproxy server can enforce data rate
 limits and/or packet loss or corruption.
 (c) Alan Marchiori 2019

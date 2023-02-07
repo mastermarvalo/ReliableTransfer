@@ -3,11 +3,11 @@ UDP_box is a black box network simulator for UDP.
 
 It simulates network throttling, packet loss, and reordering over UDP.
 
-Use it between you client/server UDP applicaiton to simulate possibly,
+Use it between you client/server UDP application to simulate possibly,
 really bad, connections.
 
 Due to the limitations of UDP, it is only possible to have one client talking
-to one server. All received packets are blindly forwarded to the last client
+to one server. All received packets are forwarded to the last client
 to connect to the UDP_bbox.
 
 client <---> UDP_bbox <---> server
@@ -41,7 +41,7 @@ def parse_args():
                         help='MTU (buffer size).')
     parser.add_argument('--ber', default = 0.0,
                         type=float,
-                        help='BYTE error rate, the probabilty of each byte being corrupted [0.0].')
+                        help='BYTE error rate, the probability of each byte being corrupted [0.0].')
     parser.add_argument('--ooo_rate', default = 0.0,
                         type=float,
                         help='Probability of delivering packets Out of Order [0.0].')
@@ -63,7 +63,7 @@ def parse_args():
                         type=int)
     parser.add_argument('--remote_addr',
                         default = '0.0.0.0',
-                        help='Remote addres to send recieved packets to [localhost].')
+                        help='Remote addres to send received packets to [localhost].')
     parser.add_argument('--remote_port',
                         help='Remote port to send packets to [8888].',
                         default=8888,
@@ -176,6 +176,7 @@ if __name__ == "__main__":
                 input_buffer.append((s,d,a))
 
         evts = [input_next_read, output_next_read, input_next_send, output_next_send]
+        # wait for the next event
         if n < min(evts):
             # nothing ready for a  while, sleep
             time.sleep(min(evts).total_seconds())

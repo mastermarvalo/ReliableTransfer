@@ -1,5 +1,5 @@
 """
-Reliable Reciever
+Reliable Receiver
 The goal is to create a reliable transport protocol. This file is the side
 that waits for a client to transfer files (server).
 Data is transmitted over UDP. A separate udp_box can enforce data rate
@@ -69,5 +69,7 @@ if __name__ == "__main__":
             logging.error("Server died: {}".format(x))
             raise(x)
             sys.exit(-15)
+    # add additional algorithms here.
     else:
         raise AlgorithmNotImplementedError()
+    
