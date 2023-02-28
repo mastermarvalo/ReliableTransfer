@@ -72,5 +72,17 @@ if __name__ == "__main__":
             logging.error("Transfer failed: {}".format(x))
             raise(x)
             sys.exit(-5)
+    elif args.alg == 'yours': # stop and wait protocol
+        # map files list into multiple calls
+        try:
+            result = list(map(lambda x: algs.yours.send_file(
+                    filename=x,
+                    dest=(args.dst, args.port),
+                    mtu=args.mtu),
+                args.files))
+        except TransferFailed as x:
+            logging.error("Transfer failed: {}".format(x))
+            raise(x)
+            sys.exit(-5)
     else:
         raise AlgorithmNotImplementedError()

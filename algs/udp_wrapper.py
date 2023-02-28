@@ -1,6 +1,6 @@
 import socket
 import logging
-#from binascii import hexlify
+from binascii import hexlify
 log = logging.getLogger(__name__)
 class UdpWrapper:
     "A wrapper to a UDP socket that adds logging."

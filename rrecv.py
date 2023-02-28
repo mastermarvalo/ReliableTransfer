@@ -70,6 +70,17 @@ if __name__ == "__main__":
             raise(x)
             sys.exit(-15)
     # add additional algorithms here.
+    elif args.alg == 'yours': # stop and wait protocol
+        # the server should never stop...
+        try:
+            algs.yours.run_server(
+                    outdir=args.outdir,
+                    addr=(args.addr, args.port),
+                    mtu=args.mtu)
+        except Exception as x:
+            logging.error("Server died: {}".format(x))
+            raise(x)
+            sys.exit(-15)
     else:
         raise AlgorithmNotImplementedError()
     
